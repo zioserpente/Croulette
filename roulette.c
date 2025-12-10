@@ -5,7 +5,7 @@
 #define VERDE "\x1b[42m"
 #define RESET "\x1b[0m"
 
-int isRosso(int n) {
+int isRosso(int n) { //check if it's red
     int rossi[] = {
         1,3,5,7,9,12,14,16,18,19,21,23,
         25,27,30,32,34,36
@@ -16,7 +16,7 @@ int isRosso(int n) {
     }
     return 0;
 }
-void stampatavolo() {
+void stampatavolo() { //prints table
     
     int numeri[] = {
         0, 32, 15, 19, 4, 21, 2, 25, 17, 34,
@@ -27,10 +27,10 @@ void stampatavolo() {
     int n = sizeof(numeri)/sizeof(numeri[0]);
 
     printf("\n=====================================\n");
-    printf("          Tavolo Roulette            \n");
+    printf("           Roulette Table           \n");
     printf("=====================================\n");
 
-    // Stampa in righe da 12 numeri
+    
     for (int i = 0; i < n; i++) {
         int num = numeri[i];
         if (num == 0) {
@@ -47,59 +47,59 @@ void stampatavolo() {
 int main(){
     int robux=1000;
     char polenta;int porri;int clotilde;int num;int numu;
-    printf("\nHai 1000 robux, buona fortuna.");
+    printf("\nYou got 1000 robux, good luck.");
     while (1){
         stampatavolo();
-        printf("\n99/100 dei giocatori quittano prima di vincere, vuoi uscire proprio adesso?(hai %d robux) (s/n): ", robux);
+        printf("\n99/100 of players quit before winning big, do you really want to quit now?( %d robux) (y/n): ", robux);
         scanf(" %c", &polenta);
-        if(polenta=='s'){
-            printf("\nHai quittato con %d robux in tasca", robux);
+        if(polenta=='y'){
+            printf("\nYou quitted with %d robux in your pockets", robux);
             return 0;
         }
         else{
-            printf("\nQuanto scommetti?");
+            printf("\nHow much are you betting?");
             scanf("%d", &porri);
-            printf("\nSu cosa scommetti i tuoi %d robux?\n(0=numero preciso 20x, 1=colore 2x, 2=pari/dispari 2x): ", porri);
+            printf("\nOn what are you betting your %d robux?\n(0=exact number 20x, 1=color 2x, 2=even/odd 2x): ", porri);
             scanf("%d", &clotilde);
             
             switch (clotilde)
             {
             case 0:
-                printf("\nDroppa il numero bro: ");
-                scanf("%d", &num); numu=rand() % 37;printf("Numero uscito: %d", numu);
+                printf("\nDrop the number bro: ");
+                scanf("%d", &num); numu=rand() % 37;printf("Extracted number: %d", numu);
                 if(num==numu){
-                    printf("\nGrande bro, hai vinto %d robux!", porri*20);
+                    printf("\nCongrats bro, you won %d robux!", porri*20);
                     robux=robux + (porri*20);
                 }
                 else{
-                    printf("\nHai perso i tuoi %d robux lil bro", porri);
+                    printf("\nYou lost %d robux lil bro", porri);
                     robux=robux-porri;
                 }
                 break;
             case 1:
-                printf("\nSeleziona il colore (0=nero, 1=rosso, 2=verde): ");
-                scanf("%d", &num);numu=rand() % 37;printf("Numero uscito: %d", numu);
-                if(isRosso(numu)&&num){printf("\nHai vinto %d robux!", porri*2);robux=robux+porri*2;}else
-                if(!isRosso(numu)&&!num){printf("\nHai vinto %d robux!", porri*2);robux=robux+porri*2;}else
-                if (numu==0&&num==2){printf("\nHai vinto %d robux!", porri*2);robux=robux+porri*2;}else{
-                    printf("\nHai perso i tuoi %d robux lil bro", porri);robux=robux-porri;
+                printf("\nChoose you color (0=black, 1=red, 2=green): ");
+                scanf("%d", &num);numu=rand() % 37;printf("Extracted number %d", numu);
+                if(isRosso(numu)&&num){printf("\nYou won %d robux!", porri*2);robux=robux+porri*2;}else
+                if(!isRosso(numu)&&!num){printf("\nYou won %d robux!", porri*2);robux=robux+porri*2;}else
+                if (numu==0&&num==2){printf("\nYou won %d robux!", porri*2);robux=robux+porri*2;}else{
+                    printf("\nYou lost %d robux lil bro", porri);robux=robux-porri;
                 }
                 break;
             case 2:
-                printf("\n Pari o dispari (0=pari, 1=dispari): ");
-                scanf("%d", &num);numu=rand() % 37;printf("Numero uscito: %d", numu);
+                printf("\n Odd or even (0=odd, 1=even): ");
+                scanf("%d", &num);numu=rand() % 37;printf("Extracted number: %d", numu);
                 if(numu%2==0 && num==0){
-                    printf("\nHai vinto %d robux!", porri*2);robux=robux+porri*2;
+                    printf("\nYou won %d robux!", porri*2);robux=robux+porri*2;
                 }else{
                     if(numu%2==1 && num==1){
-                        printf("\nHai vinto %d robux!", porri*2);robux=robux+porri*2;
+                        printf("\nYou won %d robux!", porri*2);robux=robux+porri*2;
                     }else{
-                        printf("\nHai perso i tuoi %d robux lil bro", porri);robux=robux-porri;
+                        printf("\nyou lost %d robux lil bro", porri);robux=robux-porri;
                     }
                 }
                 break;
             default:
-                printf("\nBro ma sei ritardato? Come punizione hai perso i tuoi %d robux", porri);
+                printf("\nBro what? I'm still taking your %d robux", porri);
                 robux=robux-porri;
             }
             
